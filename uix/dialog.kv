@@ -1,0 +1,36 @@
+<LLabel@Label>:
+    bold: True
+
+
+<Launch@Popup>:
+    title: 'Login'
+    auto_dismiss: False
+    size_hint: (None, None)
+    size: (400, 300)
+
+    BoxLayout:
+        spacing: 10
+        padding: 10
+        orientation: 'vertical'
+
+        LLabel:
+            text: 'Enter Your full name...'
+
+        TextInput:
+            size_hint_y: None
+            height: 30
+            halign: 'center'
+            id: entry
+            multiline: False
+            write_tab: True
+            hint_text: 'Your name'
+            unfocus_on_touch: False
+            focus: True
+
+        LLabel:
+            text: 'Are You ready to start testing?'
+
+        Button:
+            text: 'Yes, I am ready'
+            on_press: app.root.name = entry.text
+            on_release: app.root.start(), root.dismiss()

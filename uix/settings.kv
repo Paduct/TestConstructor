@@ -1,0 +1,48 @@
+<SLabel@Label>:
+    width: 150
+    size_hint_x: None
+    text_size: (self.width, None)
+    halign: 'right'
+
+
+<Tuning@Popup>:
+    title: 'Settings'
+    auto_dismiss: False
+    size_hint: (None, None)
+    size: (500, 250)
+    settings: app.tester.read_settings()
+
+    GridLayout:
+        cols: 2
+        spacing: 10
+        padding: 10
+        height: 50
+
+        SLabel:
+            text: 'Seconds to question:'
+
+        Spinner:
+            id: spiner
+            values: [str(i) for i in range(10, 310, 10)]
+            text: root.settings['time']
+
+        SLabel:
+            text: 'Place for results:'
+
+        Button:
+            id: paths
+            halign: 'center'
+            text_size: (self.width - 10, None)
+            shorten: True
+            shorten_from: 'left'
+            text: root.settings['path']
+            path_chooser: lambda path_file: setattr(paths, 'text', path_file)
+            on_press: app.impl_path_chooser = self.path_chooser
+            on_release: Factory.PathChooser().open()
+
+        SLabel
+
+        Button:
+            text: 'Apply'
+            on_press: app.save_settings(spiner.text, paths.text)
+            on_release: root.dismiss()

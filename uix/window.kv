@@ -1,0 +1,206 @@
+<GToggleButton@ToggleButton>:
+    text: "New question"
+    text_size: (self.width - 10, None)
+    allow_no_selection: False
+    group: 'select_question'
+    shorten: True
+    shorten_from: 'right'
+    state: 'down'
+    on_press: app.save_form(), app.clear_form(), app.fill_form()
+
+
+<FCheckBox@CheckBox>:
+    size_hint_x: None
+    width: 50
+    allow_no_selection: False
+    group: 'correct_answer'
+    size_hint_y: 0.09
+    disabled: True
+    on_press: app.BUBLE.pos = (self.x - self.width*2, self.y + self.height/1.5)
+    on_release: app.BUBLE.pos = (-100, -100)
+
+
+<FTextInput@TextInput>:
+    use_bubble: True
+    size_hint_y: 0.09
+    disabled: True
+    unfocus_on_touch: False
+
+
+<QLabel@Label>:
+    size_hint_x: None
+    width: 175
+
+
+<QButton@Button>:
+    size_hint_x: None
+    width: 175
+
+
+<MenuBar@ActionGroup>:
+    ActionButton:
+        text: 'Open'
+        on_press: app.impl_path_chooser = app.open_test
+        on_release: Factory.PathChooser().open()
+
+    ActionButton:
+        text: 'Save'
+        on_press: app.impl_path_chooser = app.save_test
+        on_release: Factory.PathChooser().open()
+
+    ActionButton:
+        text: 'Launch'
+        on_press: app.impl_path_chooser = app.launch_test
+        on_release: Factory.PathChooser().open()
+
+    ActionButton:
+        text: 'Settings'
+        on_press: Factory.Tuning().open()
+
+
+<RootWindow@BoxLayout>:
+    spacing: 10
+    padding: 10
+    orientation: 'vertical'
+
+    PanelBar
+
+    GridLayout:
+        cols: 4
+        size_hint_y: None
+        spacing: 10
+
+        QLabel:
+            id: status
+            markup: True
+            text: 'New test!'
+
+        QLabel:
+            id: all_issues
+            text: app.tester.TOTAL_QUESTIONS_STR.format(1)
+
+        Label:
+            id: issues
+            text: app.CURRENT_QUESTION_STR.format(1)
+
+        Label:
+            id: reply
+            text: app.ANSWERS_TO_QUESTION_STR.format(0)
+
+        QButton:
+            text: 'Add question'
+            background_color: (0, 1, 0, 1)
+            on_press: app.question_add()
+
+        QButton:
+            text: 'Delete question'
+            background_color: (1, 0, 0, 1)
+            on_press: app.question_del()
+
+        Button:
+            text: 'Add answer'
+            background_color: (0, 1, 0, 1)
+            on_press: app.answer_add()
+
+        Button:
+            text: 'Delete answer'
+            background_color: (1, 0, 0, 1)
+            on_press: app.answer_del()
+
+    BoxLayout:
+        spacing: 10
+
+        ScrollView:
+            size_hint_x: None
+            width: 300
+
+            GridLayout:
+                id: box_quest
+                cols: 1
+                row_force_default: True
+                row_default_height: 30
+                size_hint_y: None
+                height: self.minimum_height
+
+                GToggleButton
+
+        GridLayout:
+            cols: 2
+            spacing: 10
+
+            FCheckBox:
+                id: radio0
+                size_hint_y: 0.19
+                disabled: False
+                active: True
+                active_on: self.add_widget(app.BUBLE)
+
+            FTextInput:
+                id: text0
+                disabled: False
+                focused: True
+                size_hint_y: 0.19
+                hint_text: 'Question text'
+
+            FCheckBox:
+                id: radio1
+
+            FTextInput:
+                id: text1
+                hint_text: 'First answer'
+
+            FCheckBox:
+                id: radio2
+
+            FTextInput:
+                id: text2
+                hint_text: 'Second answer'
+
+            FCheckBox:
+                id: radio3
+
+            FTextInput:
+                id: text3
+                hint_text: 'Third answer'
+
+            FCheckBox:
+                id: radio4
+
+            FTextInput:
+                id: text4
+                hint_text: 'Fourth answer'
+
+            FCheckBox:
+                id: radio5
+
+            FTextInput:
+                id: text5
+                hint_text: 'Fifth answer'
+
+            FCheckBox:
+                id: radio6
+
+            FTextInput:
+                id: text6
+                hint_text: 'Sixth answer'
+
+            FCheckBox:
+                id: radio7
+
+            FTextInput:
+                id: text7
+                hint_text: 'Seventh answer'
+
+            FCheckBox:
+                id: radio8
+
+            FTextInput:
+                id: text8
+                hint_text: 'Eighth answer'
+
+            FCheckBox:
+                id: radio9
+
+            FTextInput:
+                id: text9
+                hint_text: 'Ninth answer'

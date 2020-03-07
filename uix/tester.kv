@@ -1,0 +1,136 @@
+<TCheckBox@CheckBox>:
+    allow_no_selection: False
+    group: 'correct_answer'
+    disabled: True
+    size_hint_x: None
+    width: 50
+
+
+<TLabel@Label>:
+    text_size: (self.width, None)
+
+
+<Tester>:
+    orientation: 'vertical'
+
+    GridLayout:
+        id: top_grid
+        cols: 3
+        spacing: 10
+        padding: 10
+        size_hint_y: None
+
+        Label:
+            id: all_issues
+            text: root.TOTAL_QUESTIONS_STR.format(0)
+
+        Label:
+            id: issues
+            text: root.QUESTIONS_LEFT_STR.format(0)
+
+        Label:
+            markup: True
+            id: time_status
+            text: root.SECONDS_LEFT_STR.format(0)
+
+        Button:
+            background_color: (0, 0, 1, 1)
+            text: 'Previous'
+            on_press: root.previous_question()
+
+        Button:
+            background_color: (0, 1, 0, 1)
+            text: 'Accept answer'
+            on_press: root.accept_answer() if root.test_temporary else None
+
+        Button:
+            background_color: (0, 0, 1, 1)
+            text: 'Following'
+            on_press: root.next_question()
+
+    HSeparatorLine
+
+    Label:
+        id: reply
+        size_hint_y: 0.2
+        bold: True
+        markup: True
+
+    HSeparatorLine
+
+    BoxLayout:
+        size_hint_y: 0.8
+        id: bottom_box
+
+        Label:
+            size_hint_x: 0.2
+
+        GridLayout:
+            size_hint_x: 0.8
+            cols: 2
+            spacing: 10
+            padding: 10
+
+            TCheckBox:
+                id: radio0
+                disabled: False
+                active: True
+
+            TLabel:
+                id: answer0
+                text: 'No correct answer'
+                disabled: True
+
+            TCheckBox:
+                id: radio1
+
+            TLabel:
+                id: answer1
+
+            TCheckBox:
+                id: radio2
+
+            TLabel:
+                id: answer2
+
+            TCheckBox:
+                id: radio3
+
+            TLabel:
+                id: answer3
+
+            TCheckBox:
+                id: radio4
+
+            TLabel:
+                id: answer4
+
+            TCheckBox:
+                id: radio5
+
+            TLabel:
+                id: answer5
+
+            TCheckBox:
+                id: radio6
+
+            TLabel:
+                id: answer6
+
+            TCheckBox:
+                id: radio7
+
+            TLabel:
+                id: answer7
+
+            TCheckBox:
+                id: radio8
+
+            TLabel:
+                id: answer8
+
+            TCheckBox:
+                id: radio9
+
+            TLabel:
+                id: answer9
